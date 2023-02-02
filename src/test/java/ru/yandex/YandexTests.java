@@ -1,11 +1,12 @@
 package ru.yandex;
 
+import baseTest.BaseTests;
 import org.junit.Test;
 import pages.YandexBeforeSearch;
 
 import static com.codeborne.selenide.Selenide.open;
 
-public class YandexTests {
+public class YandexTests extends BaseTests {
 
     @Test
     public void oneSearchYandexTest() {

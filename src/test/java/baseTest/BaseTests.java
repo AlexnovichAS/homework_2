@@ -11,10 +11,12 @@ public class BaseTests {
     @Before
     public void option() {
         Configuration.startMaximized = true;
+        System.out.println("@Before");
     }
 
     @After
     public void clear() {
+        System.out.println("@After");
         closeWebDriver();
     }
 }

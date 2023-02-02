@@ -7,10 +7,10 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class YandexAfterSearch {
 
-    public OpenManePage goLink(String search) {
+    public OpenMainPage goLink(String search) {
         SelenideElement element = $$x("//div[contains(@class,'organic__title-wrapper')]").find(text(search));
         element.$x(".//a[@href]").click();
         switchTo().window(1);
-        return page(OpenManePage.class);
+        return page(OpenMainPage.class);
     }
 }

@@ -1,22 +1,22 @@
-package baseTest;
+package BaseTest;
 
 import com.codeborne.selenide.Configuration;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
+import static com.codeborne.selenide.Selenide.open;
 
 public class BaseTests {
 
-    @Before
+    @BeforeEach
     public void option() {
         Configuration.startMaximized = true;
-        System.out.println("@Before");
+        open("https://edujira.ifellow.ru");
     }
 
-    @After
+    @AfterEach
     public void clear() {
-        System.out.println("@After");
         closeWebDriver();
     }
 }

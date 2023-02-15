@@ -1,10 +1,13 @@
-import baseTest.BaseTests;
-import org.junit.Test;
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
+import org.junit.runner.RunWith;
 
-public class RunTest extends BaseTests {
-
-    @Test
-    public void run(){
-        System.out.println("Test");
-    }
+@RunWith(Cucumber.class)
+@CucumberOptions(
+        plugin = {"pretty"},
+        features = "src/test/resources/features",
+        glue = "StepDefinition",
+        tags = "@all"
+)
+public class RunTest {
 }

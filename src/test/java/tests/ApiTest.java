@@ -27,9 +27,18 @@ public class ApiTest {
     @DisplayName("Авторизация в Jira")
     @ParameterizedTest(name = "{displayName}: {arguments}")
     @CsvSource({"aalehnovich, Qwerty123, 200, JSESSIONID, 204"})
-    public void testJiraApi2(String name, String pass, String status, String checkValue, String checkDeleteStatus) {
+    public void testJiraApi(String name, String pass, String status, String checkValue, String checkDeleteStatus) {
         authorizationInJira(name, pass, status, checkValue);
         getCurrentUserInJira(status, name);
         deleteJira(checkDeleteStatus);
+    }
+
+    @DisplayName("Авторизация в Jira basic authentication")
+    @ParameterizedTest(name = "{displayName}: {arguments}")
+    @CsvSource({"aalehnovich:Qwerty123, 200, aalehnovich, 204"})
+    public void testJiraApiBasic(String param, String status, String checkValue, String checkDeleteStatus) {
+        authorizationBasicInJira(param, status, checkValue);
+        getCurrentUserBasic(param, status, checkValue);
+        deleteJiraBasic(param, checkDeleteStatus);
     }
 }

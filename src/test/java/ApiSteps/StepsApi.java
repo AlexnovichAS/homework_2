@@ -6,8 +6,10 @@ import org.json.JSONObject;
 import org.junit.jupiter.api.Assertions;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Base64;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
@@ -111,7 +113,7 @@ public class StepsApi {
         body.put("username", name);
         body.put("password", pass);
         Response getJiraLogin = given()
-                .spec(requestSpecPost(getProperty("jira.url"), body.toString()))
+                .spec(requestSpecPost(getProperty("jira.auth.url"), body.toString()))
                 .when()
                 .post("/session")
                 .then()
@@ -127,7 +129,7 @@ public class StepsApi {
     public static void getCurrentUserInJira(String status, String name) {
         Response getJiraUser = given()
                 .cookies(allCookies)
-                .baseUri(getProperty("jira.url"))
+                .baseUri(getProperty("jira.auth.url"))
                 .when()
                 .get("/session")
                 .then()
@@ -144,7 +146,51 @@ public class StepsApi {
     public static void deleteJira(String checkDeleteStatus) {
         given()
                 .cookies(allCookies)
-                .baseUri(getProperty("jira.url"))
+                .baseUri(getProperty("jira.auth.url"))
+                .when()
+                .delete("/session")
+                .then()
+                .spec(responseSpec(checkDeleteStatus));
+    }
+
+    @Step("Создать новый сеанс для пользователя в Jira: basic authentication")
+    public static void authorizationBasicInJira(String param, String status, String checkValue) {
+        String encodedPass = Base64.getEncoder().encodeToString(param.getBytes(StandardCharsets.UTF_8));
+        Response getJiraLogin = given()
+                .header("Authorization", "Basic " + encodedPass)
+                .spec(requestSpecGet(getProperty("jira.auth.url")))
+                .when()
+                .get("/session")
+                .then()
+                .spec(responseSpec(status))
+                .extract()
+                .response();
+        String infoName = new JSONObject(getJiraLogin.getBody().asString()).get("name").toString();
+        Assertions.assertEquals(checkValue, infoName, "Ошибка, пользователь не авторизирован");
+    }
+
+    @Step("Возвращает текущего зарегистрированного пользователя: basic authentication")
+    public static void getCurrentUserBasic(String param, String status, String checkValue) {
+        String encodedPass = Base64.getEncoder().encodeToString(param.getBytes(StandardCharsets.UTF_8));
+        Response getJiraLogin = given()
+                .header("Authorization", "Basic " + encodedPass)
+                .baseUri("https://edujira.ifellow.ru/rest/api/2")
+                .when()
+                .get("/myself")
+                .then()
+                .spec(responseSpec(status))
+                .extract()
+                .response();
+        String infoName = new JSONObject(getJiraLogin.getBody().asString()).get("name").toString();
+        Assertions.assertEquals(checkValue, infoName, "Ошибка, пользователь не авторизирован");
+    }
+
+    @Step("Выйти из Jira: basic authentication")
+    public static void deleteJiraBasic(String param, String checkDeleteStatus) {
+        String encodedPass = Base64.getEncoder().encodeToString(param.getBytes(StandardCharsets.UTF_8));
+        given()
+                .header("Authorization", "Basic " + encodedPass)
+                .baseUri(getProperty("jira.auth.url"))
                 .when()
                 .delete("/session")
                 .then()

@@ -1,6 +1,7 @@
 package ApiSteps;
 
 import io.qameta.allure.Step;
+import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Assertions;
@@ -13,6 +14,7 @@ import java.util.Base64;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.preemptive;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static specification.Specification.*;
 import static utils.PropConf.getProperty;
@@ -190,6 +192,31 @@ public class StepsApi {
         String encodedPass = Base64.getEncoder().encodeToString(param.getBytes(StandardCharsets.UTF_8));
         given()
                 .header("Authorization", "Basic " + encodedPass)
+                .baseUri(getProperty("jira.auth.url"))
+                .when()
+                .delete("/session")
+                .then()
+                .spec(responseSpec(checkDeleteStatus));
+    }
+
+    @Step("Создать новый сеанс для пользователя в Jira: preemptive basic")
+    public static void authorizationPreemptiveBasic(String status, String checkValue) {
+        RestAssured.authentication = preemptive().basic("aalehnovich", "Qwerty123");
+        Response getJiraLogin = given()
+                .spec(requestSpecGet(getProperty("jira.auth.url")))
+                .when()
+                .get("/session")
+                .then()
+                .spec(responseSpec(status))
+                .extract()
+                .response();
+        String infoName = new JSONObject(getJiraLogin.getBody().asString()).get("name").toString();
+        Assertions.assertEquals(checkValue, infoName, "Ошибка, пользователь не авторизирован");
+    }
+
+    @Step("Выйти из Jira: preemptive basic")
+    public static void deleteJiraPreemptiveBasic(String checkDeleteStatus) {
+        given()
                 .baseUri(getProperty("jira.auth.url"))
                 .when()
                 .delete("/session")

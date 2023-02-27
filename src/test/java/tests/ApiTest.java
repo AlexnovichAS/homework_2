@@ -24,7 +24,7 @@ public class ApiTest {
         createUserInReqres();
     }
 
-    @DisplayName("Авторизация в Jira")
+    @DisplayName("Авторизация в Jira Cookies")
     @ParameterizedTest(name = "{displayName}: {arguments}")
     @CsvSource({"aalehnovich, Qwerty123, 200, JSESSIONID, 204"})
     public void testJiraApi(String name, String pass, String status, String checkValue, String checkDeleteStatus) {

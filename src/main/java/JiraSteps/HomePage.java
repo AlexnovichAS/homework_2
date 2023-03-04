@@ -1,6 +1,5 @@
 package JiraSteps;
 
-import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import org.junit.Assert;
 
@@ -12,15 +11,13 @@ import static PageElements.BasePageElements.profileIcon;
 import static PageElements.HomePageElements.*;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
+import static io.qameta.allure.Allure.getLifecycle;
 
 public class HomePage {
 
-    @Step("Авторизуемся в системе с учетными данными: {name}, {login}")
+    @Step("Авторизуемся в системе с учетными данными: {name}")
     public static void login(String name, String login) {
-        Allure.step("Параметры", (step)-> {
-            step.parameter("Имя",name);
-            step.parameter("Пароль", login);
-        });
+        getLifecycle().updateStep(stepResult -> stepResult.getParameters().remove(1));
         nameInput.should(exist).shouldBe(visible, Duration.ofSeconds(10)).sendKeys(name);
         passInput.should(exist).shouldBe(visible, Duration.ofSeconds(10)).sendKeys(login);
         loginButton.should(exist).shouldBe(visible, Duration.ofSeconds(10)).click();

@@ -1,6 +1,8 @@
 package ru.edujira;
 
 import BaseTest.WebHooks;
+import io.qameta.allure.Description;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static JiraSteps.AllIssuesPage.*;
@@ -14,7 +16,9 @@ import static JiraSteps.TaskPage.checkTaskDetailsInTask;
 
 public class JiraTests extends WebHooks {
 
+    @Description("Проверить общее количество заведенных задач в проекте")
     @Test
+    @DisplayName("Проверить общее количество заведенных задач в проекте")
     public void loginTest() {
         goProject("Проекты", "Test (TEST)");
         goLeftPanelSections("Задачи");
@@ -27,7 +31,9 @@ public class JiraTests extends WebHooks {
         checkInformationAboutTasks(countTask);
     }
 
+    @Description("Проверить Статус задачи и привязку к затронутой версии")
     @Test
+    @DisplayName("Проверить Статус задачи и привязку к затронутой версии")
     public void checkStatusTest() {
         findInQuickSearch("TestSelenium");
         checkNameTaskInTask("TestSelenium");
@@ -35,7 +41,9 @@ public class JiraTests extends WebHooks {
         checkTaskDetailsInTask("Исправить в версиях", "Version 2.0");
     }
 
+    @Description("Создание типа задачи: 'Ошибка' и перевод задачи по статусам до закрытого")
     @Test
+    @DisplayName("Создание типа задачи: 'Ошибка' и перевод задачи по статусам до закрытого")
     public void createTaskTest() {
         goProject("Проекты", "Test (TEST)");
         clickPrimaryButtons("Создать");

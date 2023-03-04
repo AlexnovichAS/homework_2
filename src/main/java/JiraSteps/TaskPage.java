@@ -1,5 +1,6 @@
 package JiraSteps;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 
 import java.time.Duration;
@@ -11,6 +12,7 @@ import static com.codeborne.selenide.Condition.exist;
 
 public class TaskPage {
 
+    @Step("Проверка значения: {result}, у свойства {name} в деталях задачи")
     public static void checkTaskDetailsInTask(String name, String result) {
         String detailsResult = taskDetails(name)
                 .waitUntil(exactText(result), 10000)
@@ -19,6 +21,7 @@ public class TaskPage {
         Assert.assertEquals("Ошибка, в поле задачи: " + name + " указано: " + detailsResult, result.toLowerCase(), detailsResult);
     }
 
+    @Step("Проверка перехода в задачу: {nameTask}")
     public static void checkNameTaskInTask(String nameTask) {
         String header = headerH1.getText();
         Assert.assertEquals("Ошибка, найдена задача:" + header + "ожидалась: " + nameTask, nameTask, header);

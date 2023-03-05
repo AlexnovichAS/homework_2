@@ -28,7 +28,7 @@ public class StepsApi {
     public static String locationLastCharacter;
     public static Map<String, String> allCookies;
 
-    @Step("Найти информацию по персонажу")
+    @Step("Найти информацию по персонажу: {character}")
     public static void getInformationCharacter(String character) {
         Response getCharacter = given()
                 .spec(requestSpecGet(getProperty("rick.url")))
@@ -69,7 +69,7 @@ public class StepsApi {
                 .get(character).toString().replaceAll("[^0-9]", ""));
     }
 
-    @Step("Получить данные последнего персонажа")
+    @Step("Получить данные последнего персонажа и сравнить с персонажем: {character}")
     public static void getInformationLastCharacter(String character) {
         Response getCharacterInfo = given()
                 .spec(requestSpecGet(getProperty("rick.url")))
@@ -109,7 +109,7 @@ public class StepsApi {
         Assertions.assertEquals(body.get("job"), new JSONObject(postCreateUser.getBody().asString()).get("job"), "Ошибка, не совпадает");
     }
 
-    @Step("Создать новый сеанс для пользователя в Jira")
+    @Step("Создать новый сеанс для пользователя: '{name}' в Jira")
     public static void authorizationInJira(String name, String pass, String status, String checkValue) {
         JSONObject body = new JSONObject();
         body.put("username", name);
@@ -127,7 +127,7 @@ public class StepsApi {
         allCookies = getJiraLogin.getCookies();
     }
 
-    @Step("Запросить текущего пользователя в jira")
+    @Step("Запросить текущего пользователя с именем: '{name}' в jira")
     public static void getCurrentUserInJira(String status, String name) {
         Response getJiraUser = given()
                 .cookies(allCookies)
@@ -171,7 +171,7 @@ public class StepsApi {
         Assertions.assertEquals(checkValue, infoName, "Ошибка, пользователь не авторизирован");
     }
 
-    @Step("Возвращает текущего зарегистрированного пользователя: basic authentication")
+    @Step("Возвратить текущего зарегистрированного пользователя в Jira: basic authentication")
     public static void getCurrentUserBasic(String param, String status, String checkValue) {
         String encodedPass = Base64.getEncoder().encodeToString(param.getBytes(StandardCharsets.UTF_8));
         Response getJiraLogin = given()

@@ -1,5 +1,6 @@
 package tests;
 
+import hooks.ApiHooks;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -7,7 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static ApiSteps.StepsApi.authorizationPreemptiveBasic;
 import static ApiSteps.StepsApi.deleteJiraPreemptiveBasic;
 
-public class JiraApiTest {
+public class JiraApiTest extends ApiHooks {
 
     @DisplayName("Авторизация в Jira preemptive basic")
     @ParameterizedTest(name = "{displayName}: {arguments}")

@@ -2,12 +2,13 @@ package hooks;
 
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.extension.BeforeAllCallback;
+import org.junit.jupiter.api.extension.ExtensionContext;
 
-public class ApiHooks {
+public class ApiHooks implements BeforeAllCallback {
 
-    @BeforeAll
-    public static void beforeAll() {
+    @Override
+    public void beforeAll(ExtensionContext extensionContext) {
         RestAssured.filters(new AllureRestAssured());
     }
 }

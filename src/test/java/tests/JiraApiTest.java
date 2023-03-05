@@ -3,12 +3,14 @@ package tests;
 import hooks.ApiHooks;
 import io.qameta.allure.Epic;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static ApiSteps.StepsApi.authorizationPreemptiveBasic;
 import static ApiSteps.StepsApi.deleteJiraPreemptiveBasic;
 
+@ExtendWith(ApiHooks.class)
 public class JiraApiTest extends ApiHooks {
 
     @Epic(value = "edujira.ifellow.ru")

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.BeforeAll;
 public class ApiHooks {
 
     @BeforeAll
-    public static void beforeAll(){
+    public static void beforeAll() {
         RestAssured.filters(new AllureRestAssured());
     }
 }

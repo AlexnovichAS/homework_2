@@ -38,6 +38,7 @@ public abstract class BasePageJira {
         searchField.should(exist).shouldBe(visible, Duration.ofSeconds(10)).sendKeys(task);
         resultInQuickSearch(task).should(exist).shouldBe(visible, Duration.ofSeconds(10)).click();
     }
+
     @Step("Ввод значения: {input}, у поля: {field} в окне 'Создание задачи'")
     public static void completeRequiredInputTask(String field, String input) {
         SelenideElement result = requiredField(field).should(exist).shouldBe(visible, Duration.ofSeconds(10));
@@ -52,12 +53,14 @@ public abstract class BasePageJira {
         result.sendKeys(input);
         result.pressEnter();
     }
+
     @Step("Ввод текста: {input}, у поля: {field} в окне 'Создание задачи'")
     public static void completeRequiredFieldText(String field, String input) {
         SelenideElement iframe = inputText(field).should(exist).shouldBe(visible, Duration.ofSeconds(10));
         switchTo().frame(iframe).findElement(By.xpath(".//body")).sendKeys(input);
         switchTo().parentFrame();
     }
+
     @Step("Клик по кнопке: {nameOptions} в окне 'Создание задачи'")
     public static void createTask() {
         buttonCreate.should(exist).shouldBe(visible, Duration.ofSeconds(10)).click();

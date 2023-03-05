@@ -11,9 +11,15 @@ import static PageElements.BasePageElements.profileIcon;
 import static PageElements.HomePageElements.*;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.getLifecycle;
 
 public class HomePage {
+
+    @Step("Открываем страницу по ссылке: {url}")
+    public static void openUrl(String url){
+        open(url);
+    }
 
     @Step("Авторизуемся в системе с учетными данными: {name}")
     public static void login(String name, String login) {

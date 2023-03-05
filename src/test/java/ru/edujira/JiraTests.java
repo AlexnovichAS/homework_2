@@ -14,11 +14,12 @@ import static JiraSteps.RapidBoardPage.goLeftPanelSections;
 import static JiraSteps.TaskPage.checkNameTaskInTask;
 import static JiraSteps.TaskPage.checkTaskDetailsInTask;
 
+@DisplayName("Проверить работу Jira")
 public class JiraTests extends WebHooks {
 
-    @Description("Проверить общее количество заведенных задач в проекте")
     @Test
     @DisplayName("Проверить общее количество заведенных задач в проекте")
+    @Description("Проверяет общее количество заведенных задач в проекте")
     public void loginTest() {
         goProject("Проекты", "Test (TEST)");
         goLeftPanelSections("Задачи");
@@ -31,9 +32,10 @@ public class JiraTests extends WebHooks {
         checkInformationAboutTasks(countTask);
     }
 
-    @Description("Проверить Статус задачи и привязку к затронутой версии")
+
     @Test
     @DisplayName("Проверить Статус задачи и привязку к затронутой версии")
+    @Description("Проверяет Статус задачи и привязку к затронутой версии")
     public void checkStatusTest() {
         findInQuickSearch("TestSelenium");
         checkNameTaskInTask("TestSelenium");
@@ -41,9 +43,9 @@ public class JiraTests extends WebHooks {
         checkTaskDetailsInTask("Исправить в версиях", "Version 2.0");
     }
 
-    @Description("Создание типа задачи: 'Ошибка' и перевод задачи по статусам до закрытого")
     @Test
-    @DisplayName("Создание типа задачи: 'Ошибка' и перевод задачи по статусам до закрытого")
+    @DisplayName("Создать задачу")
+    @Description("Создает задачу: 'Ошибка' и переводит задачу по статусам до закрытого")
     public void createTaskTest() {
         goProject("Проекты", "Test (TEST)");
         clickPrimaryButtons("Создать");

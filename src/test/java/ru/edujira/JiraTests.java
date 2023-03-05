@@ -32,7 +32,6 @@ public class JiraTests extends WebHooks {
         checkInformationAboutTasks(countTask);
     }
 
-
     @Test
     @DisplayName("Проверить Статус задачи и привязку к затронутой версии")
     @Description("Проверяет Статус задачи и привязку к затронутой версии")

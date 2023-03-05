@@ -17,15 +17,17 @@ import static io.qameta.allure.Allure.getLifecycle;
 public class HomePage {
 
     @Step("Открываем страницу по ссылке: {url}")
-    public static void openUrl(String url){
+    public static void openUrl(String url) {
         open(url);
     }
 
     @Step("Авторизуемся в системе с учетными данными: {name}")
-    public static void login(String name, String login) {
-        getLifecycle().updateStep(stepResult -> stepResult.getParameters().remove(1));
+    public static void login(String name, String pass) {
+        getLifecycle().updateStep(stepResult -> stepResult.getParameters().get(1)
+                .setName("pass")
+                .setValue("Угадай с 3-х попыток"));
         nameInput.should(exist).shouldBe(visible, Duration.ofSeconds(10)).sendKeys(name);
-        passInput.should(exist).shouldBe(visible, Duration.ofSeconds(10)).sendKeys(login);
+        passInput.should(exist).shouldBe(visible, Duration.ofSeconds(10)).sendKeys(pass);
         loginButton.should(exist).shouldBe(visible, Duration.ofSeconds(10)).click();
         String userName = profileIcon.should(exist).shouldBe(visible, Duration.ofSeconds(10)).getAttribute("data-username");
         Assert.assertEquals("Пользователь" + name + "не зарегистрирован", name, userName);

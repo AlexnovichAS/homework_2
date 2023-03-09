@@ -1,4 +1,4 @@
-package BaseTest;
+package ru.edujira.BaseTest;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
@@ -7,8 +7,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
-import static JiraSteps.HomePage.login;
-import static JiraSteps.HomePage.openUrl;
+import static ru.edujira.JiraSteps.HomePage.login;
+import static ru.edujira.JiraSteps.HomePage.openUrl;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class WebHooks {

@@ -1,14 +1,12 @@
-package JiraSteps;
+package ru.edujira.JiraSteps;
 
 import io.qameta.allure.Step;
 import org.junit.Assert;
 
 import java.time.Duration;
 
-import static JiraSteps.BasePageJira.clickPrimaryButtons;
-import static JiraSteps.BasePageJira.goPrimaryButtonsOptions;
-import static PageElements.BasePageElements.profileIcon;
-import static PageElements.HomePageElements.*;
+import static ru.edujira.PageElements.BasePageElements.profileIcon;
+import static ru.edujira.PageElements.HomePageElements.*;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.open;
@@ -35,7 +33,7 @@ public class HomePage {
 
     @Step("Переходим в проект: {nameOptions}")
     public static void goProject(String nameButton, String nameOptions) {
-        clickPrimaryButtons(nameButton);
-        goPrimaryButtonsOptions(nameOptions);
+        BasePageJira.clickPrimaryButtons(nameButton);
+        BasePageJira.goPrimaryButtonsOptions(nameOptions);
     }
 }

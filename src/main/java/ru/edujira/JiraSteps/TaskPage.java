@@ -1,12 +1,12 @@
-package JiraSteps;
+package ru.edujira.JiraSteps;
 
 import io.qameta.allure.Step;
 import org.junit.Assert;
 
 import java.time.Duration;
 
-import static PageElements.TaskPageElements.headerH1;
-import static PageElements.TaskPageElements.taskDetails;
+import static ru.edujira.PageElements.TaskPageElements.headerH1;
+import static ru.edujira.PageElements.TaskPageElements.taskDetails;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 

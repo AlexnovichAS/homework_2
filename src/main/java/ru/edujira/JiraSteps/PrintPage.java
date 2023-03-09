@@ -1,11 +1,11 @@
-package JiraSteps;
+package ru.edujira.JiraSteps;
 
 import io.qameta.allure.Step;
 import org.junit.Assert;
 
 import java.time.Duration;
 
-import static PageElements.PrintPageElements.resultCount;
+import static ru.edujira.PageElements.PrintPageElements.resultCount;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 

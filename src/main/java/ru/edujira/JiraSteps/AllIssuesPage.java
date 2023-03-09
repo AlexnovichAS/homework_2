@@ -1,11 +1,11 @@
-package JiraSteps;
+package ru.edujira.JiraSteps;
 
 import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 
 import java.time.Duration;
 
-import static PageElements.AllIssuesElements.*;
+import static ru.edujira.PageElements.AllIssuesElements.*;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 

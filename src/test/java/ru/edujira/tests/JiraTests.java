@@ -1,18 +1,18 @@
-package ru.edujira;
+package ru.edujira.tests;
 
-import BaseTest.WebHooks;
+import ru.edujira.BaseTest.WebHooks;
 import io.qameta.allure.Description;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static JiraSteps.AllIssuesPage.*;
-import static JiraSteps.BasePageJira.*;
-import static JiraSteps.FilterPage.*;
-import static JiraSteps.HomePage.goProject;
-import static JiraSteps.PrintPage.checkInformationAboutTasks;
-import static JiraSteps.RapidBoardPage.goLeftPanelSections;
-import static JiraSteps.TaskPage.checkNameTaskInTask;
-import static JiraSteps.TaskPage.checkTaskDetailsInTask;
+import static ru.edujira.JiraSteps.AllIssuesPage.*;
+import static ru.edujira.JiraSteps.BasePageJira.*;
+import static ru.edujira.JiraSteps.FilterPage.*;
+import static ru.edujira.JiraSteps.HomePage.goProject;
+import static ru.edujira.JiraSteps.PrintPage.checkInformationAboutTasks;
+import static ru.edujira.JiraSteps.RapidBoardPage.goLeftPanelSections;
+import static ru.edujira.JiraSteps.TaskPage.checkNameTaskInTask;
+import static ru.edujira.JiraSteps.TaskPage.checkTaskDetailsInTask;
 
 @DisplayName("Проверить работу Jira")
 public class JiraTests extends WebHooks {
@@ -36,7 +36,9 @@ public class JiraTests extends WebHooks {
     @DisplayName("Проверить Статус задачи и привязку к затронутой версии")
     @Description("Проверяет Статус задачи и привязку к затронутой версии")
     public void checkStatusTest() {
-        findInQuickSearch("TestSelenium");
+        goProject("Проекты", "Test (TEST)");
+        goLeftPanelSections("Задачи");
+        findInFilter("Задача","TestSelenium");
         checkNameTaskInTask("TestSelenium");
         checkTaskDetailsInTask("Статус", "В работе");
         checkTaskDetailsInTask("Исправить в версиях", "Version 2.0");
@@ -58,7 +60,7 @@ public class JiraTests extends WebHooks {
         completeRequiredFieldTask("Спринт", "Спринт 1");
         createTask();
         goLeftPanelSections("Задачи");
-        findInFilter("Не работает кнопка оплаты на главной странице при ее нажатии");
+        findInFilter("Ошибка","Не работает кнопка оплаты на главной странице при ее нажатии");
         checkNameTaskInFilter("Не работает кнопка оплаты на главной странице при ее нажатии");
         checkTaskDetailsInFilter("Статус", "Сделать");
         choiceStatus("В работе");

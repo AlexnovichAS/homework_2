@@ -1,4 +1,4 @@
-package JiraSteps;
+package ru.edujira.JiraSteps;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 
 import java.time.Duration;
 
-import static PageElements.BasePageElements.*;
+import static ru.edujira.PageElements.BasePageElements.*;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.switchTo;
@@ -31,12 +31,6 @@ public abstract class BasePageJira {
     @Step("Клик по значению: {nameOptions}, в выпадающем меню на верхней панели")
     public static void goPrimaryButtonsOptions(String nameOptions) {
         primaryButtonsOptions(nameOptions).should(exist).shouldBe(visible, Duration.ofSeconds(10)).click();
-    }
-
-    @Step("Ввод значения {task} в поле поиска, далее выбор результата поиска: {task}")
-    public static void findInQuickSearch(String task) {
-        searchField.should(exist).shouldBe(visible, Duration.ofSeconds(10)).sendKeys(task);
-        resultInQuickSearch(task).should(exist).shouldBe(visible, Duration.ofSeconds(10)).click();
     }
 
     @Step("Ввод значения: {input}, у поля: {field} в окне 'Создание задачи'")

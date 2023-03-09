@@ -1,4 +1,4 @@
-package PageElements;
+package ru.edujira.PageElements;
 
 import com.codeborne.selenide.SelenideElement;
 

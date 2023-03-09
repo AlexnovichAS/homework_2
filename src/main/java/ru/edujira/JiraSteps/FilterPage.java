@@ -1,11 +1,12 @@
-package JiraSteps;
+package ru.edujira.JiraSteps;
 
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.junit.Assert;
 
 import java.time.Duration;
 
-import static PageElements.FilterPageElements.*;
+import static ru.edujira.PageElements.FilterPageElements.*;
 import static com.codeborne.selenide.Condition.*;
 
 public class FilterPage {
@@ -19,9 +20,13 @@ public class FilterPage {
         Assert.assertEquals("Ошибка, в поле задачи: " + name + " указано: " + detailsResult, result.toLowerCase(), detailsResult);
     }
 
-    @Step("Поиск задачи: {name}")
-    public static void findInFilter(String name) {
+    @Step("Поиск задачи: тип {type} и название {name}")
+    public static void findInFilter(String type, String name) {
         buttonFilter.should(exist).shouldBe(visible, Duration.ofSeconds(10)).click();
+        buttonType.should(exist).shouldBe(visible, Duration.ofSeconds(10)).click();
+        SelenideElement resultType = selectionTaskType(type).should(exist).shouldBe(visible, Duration.ofSeconds(10));
+        resultType.click();
+        resultType.pressEnter();
         fieldInput.should(exist).shouldBe(visible, Duration.ofSeconds(10)).sendKeys(name);
         buttonSearch.should(exist).shouldBe(visible, Duration.ofSeconds(10)).click();
         taskBox(name).should(exist).shouldBe(visible, Duration.ofSeconds(10)).click();

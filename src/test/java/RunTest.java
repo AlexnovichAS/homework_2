@@ -1,5 +1,5 @@
 import baseTest.BaseTests;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class RunTest extends BaseTests {
 

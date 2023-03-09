@@ -1,7 +1,8 @@
 package ru.yandex;
 
 import baseTest.BaseTests;
-import org.junit.Test;
+import com.codeborne.selenide.Selenide;
+import org.junit.jupiter.api.Test;
 import pages.YandexBeforeSearch;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -10,7 +11,7 @@ public class YandexTests extends BaseTests {
 
     @Test
     public void oneSearchYandexTest() {
-        open("https://ya.ru", YandexBeforeSearch.class)
+        Selenide.open("https://ya.ru", YandexBeforeSearch.class)
                 .find("Банки ру")
                 .goLink("Банки.ру - YouTube")
                 .checkPage("Банки.ру - YouTube");

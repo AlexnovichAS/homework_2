@@ -1,13 +1,14 @@
 package pages;
 
+import com.codeborne.selenide.Selenide;
+
 import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.page;
 
 public class YandexBeforeSearch {
 
     public YandexAfterSearch find(String search) {
         $x("//input[@aria-label='Запрос']").sendKeys(search);
         $x("//button[@type='submit']").click();
-        return page(YandexAfterSearch.class);
+        return Selenide.page(YandexAfterSearch.class);
     }
 }

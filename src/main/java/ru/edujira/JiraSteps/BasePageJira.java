@@ -18,12 +18,12 @@ public abstract class BasePageJira {
         profileButton.should(exist).shouldBe(visible, Duration.ofSeconds(10)).click();
     }
 
-    @Step("Клик по значению: {nameOptions}, в выпадающем меню 'Пользовательского профиля'")
+    @Step("Клик по значению: '{nameOptions}', в выпадающем меню 'Пользовательского профиля'")
     public static void chooseProfileOptions(String nameOptions) {
         profileOptions(nameOptions).should(exist).shouldBe(visible, Duration.ofSeconds(10)).click();
     }
 
-    @Step("Клик по кнопке: {nameButton}, на верхней панели")
+    @Step("Клик по кнопке: '{nameButton}', на верхней панели")
     public static void clickPrimaryButtons(String nameButton) {
         primaryButtons(nameButton).should(exist).shouldBe(visible, Duration.ofSeconds(10)).click();
     }
@@ -40,7 +40,7 @@ public abstract class BasePageJira {
         result.sendKeys(input);
     }
 
-    @Step("Выбор значения: {input}, у поля: {field} в окне 'Создание задачи'")
+    @Step("Выбор значения: '{input}', у поля: '{field}' в окне 'Создание задачи'")
     public static void completeRequiredFieldTask(String field, String input) {
         SelenideElement result = requiredField(field).should(exist).shouldBe(visible, Duration.ofSeconds(10));
         result.doubleClick();
@@ -48,7 +48,7 @@ public abstract class BasePageJira {
         result.pressEnter();
     }
 
-    @Step("Ввод текста: {input}, у поля: {field} в окне 'Создание задачи'")
+    @Step("Ввод текста: '{input}', у поля: '{field}' в окне 'Создание задачи'")
     public static void completeRequiredFieldText(String field, String input) {
         SelenideElement iframe = inputText(field).should(exist).shouldBe(visible, Duration.ofSeconds(10));
         switchTo().frame(iframe).findElement(By.xpath(".//body")).sendKeys(input);

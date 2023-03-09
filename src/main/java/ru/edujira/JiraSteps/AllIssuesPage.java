@@ -16,7 +16,7 @@ public class AllIssuesPage {
         chooseButton(button).should(exist).shouldBe(visible, Duration.ofSeconds(10)).click();
     }
 
-    @Step("Клик по значению: {options}, в выпадающем меню")
+    @Step("Клик по значению: '{options}', в выпадающем меню")
     public static void clickButtonOptions(String options) {
         chooseButtonOptions(options).should(exist).shouldBe(visible, Duration.ofSeconds(10)).click();
     }

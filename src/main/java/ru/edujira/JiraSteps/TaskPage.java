@@ -12,7 +12,7 @@ import static ru.edujira.PageElements.TaskPageElements.taskDetails;
 
 public class TaskPage {
 
-    @Step("Проверка значения: {result}, у свойства {name} в деталях задачи")
+    @Step("Проверка значения: '{result}', у свойства '{name}' в деталях задачи")
     public static void checkTaskDetailsInTask(String name, String result) {
         String detailsResult = taskDetails(name)
                 .waitUntil(exactText(result), 10000)

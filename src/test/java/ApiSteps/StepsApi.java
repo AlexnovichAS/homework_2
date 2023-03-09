@@ -1,5 +1,6 @@
 package ApiSteps;
 
+import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -67,6 +68,7 @@ public class StepsApi {
         lastCharacterNumber = Integer.parseInt(new JSONObject(getLastCharacter.getBody().asString())
                 .getJSONArray("characters")
                 .get(character).toString().replaceAll("[^0-9]", ""));
+        Allure.addAttachment("ID последнего персонажа", String.valueOf(lastCharacterNumber));
     }
 
     @Step("Получить данные последнего персонажа и сравнить с персонажем: {character}")

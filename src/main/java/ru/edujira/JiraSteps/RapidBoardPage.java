@@ -4,9 +4,9 @@ import io.qameta.allure.Step;
 
 import java.time.Duration;
 
-import static ru.edujira.PageElements.RapidBoardPageElements.chooseSection;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
+import static ru.edujira.PageElements.RapidBoardPageElements.chooseSection;
 
 public class RapidBoardPage {
 

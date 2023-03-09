@@ -6,8 +6,8 @@ import org.junit.Assert;
 
 import java.time.Duration;
 
-import static ru.edujira.PageElements.FilterPageElements.*;
 import static com.codeborne.selenide.Condition.*;
+import static ru.edujira.PageElements.FilterPageElements.*;
 
 public class FilterPage {
 

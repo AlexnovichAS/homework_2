@@ -5,10 +5,10 @@ import org.junit.Assert;
 
 import java.time.Duration;
 
-import static ru.edujira.PageElements.TaskPageElements.headerH1;
-import static ru.edujira.PageElements.TaskPageElements.taskDetails;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
+import static ru.edujira.PageElements.TaskPageElements.headerH1;
+import static ru.edujira.PageElements.TaskPageElements.taskDetails;
 
 public class TaskPage {
 

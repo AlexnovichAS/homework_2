@@ -14,7 +14,7 @@ public class FilterPageElements {
     public static SelenideElement buttonSaved = $x("//div[contains(@class,'saved-search-operations')]//span[text()='Экспорт']");
     public static SelenideElement headerH1 = $x("(//h1)[2]");
 
-    public static SelenideElement selectionTaskType(String type){
+    public static SelenideElement selectionTaskType(String type) {
         return $x("//label[contains(@title,'" + type + "')]");
     }
 

@@ -5,9 +5,9 @@ import org.junit.Assert;
 
 import java.time.Duration;
 
-import static ru.edujira.PageElements.PrintPageElements.resultCount;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
+import static ru.edujira.PageElements.PrintPageElements.resultCount;
 
 public class PrintPage {
 

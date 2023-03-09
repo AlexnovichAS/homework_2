@@ -7,9 +7,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
+import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static ru.edujira.JiraSteps.HomePage.login;
 import static ru.edujira.JiraSteps.HomePage.openUrl;
-import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class WebHooks {
 

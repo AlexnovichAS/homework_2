@@ -5,9 +5,9 @@ import io.qameta.allure.Step;
 
 import java.time.Duration;
 
-import static ru.edujira.PageElements.AllIssuesElements.*;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
+import static ru.edujira.PageElements.AllIssuesElements.*;
 
 public class AllIssuesPage {
 

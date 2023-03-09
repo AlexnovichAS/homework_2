@@ -1,9 +1,9 @@
 package ru.edujira.tests;
 
-import ru.edujira.BaseTest.WebHooks;
 import io.qameta.allure.Description;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import ru.edujira.BaseTest.WebHooks;
 
 import static ru.edujira.JiraSteps.AllIssuesPage.*;
 import static ru.edujira.JiraSteps.BasePageJira.*;
@@ -38,7 +38,7 @@ public class JiraTests extends WebHooks {
     public void checkStatusTest() {
         goProject("Проекты", "Test (TEST)");
         goLeftPanelSections("Задачи");
-        findInFilter("Задача","TestSelenium");
+        findInFilter("Задача", "TestSelenium");
         checkNameTaskInTask("TestSelenium");
         checkTaskDetailsInTask("Статус", "В работе");
         checkTaskDetailsInTask("Исправить в версиях", "Version 2.0");
@@ -60,7 +60,7 @@ public class JiraTests extends WebHooks {
         completeRequiredFieldTask("Спринт", "Спринт 1");
         createTask();
         goLeftPanelSections("Задачи");
-        findInFilter("Ошибка","Не работает кнопка оплаты на главной странице при ее нажатии");
+        findInFilter("Ошибка", "Не работает кнопка оплаты на главной странице при ее нажатии");
         checkNameTaskInFilter("Не работает кнопка оплаты на главной странице при ее нажатии");
         checkTaskDetailsInFilter("Статус", "Сделать");
         choiceStatus("В работе");

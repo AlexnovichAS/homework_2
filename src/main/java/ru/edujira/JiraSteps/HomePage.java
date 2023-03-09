@@ -5,12 +5,12 @@ import org.junit.Assert;
 
 import java.time.Duration;
 
-import static ru.edujira.PageElements.BasePageElements.profileIcon;
-import static ru.edujira.PageElements.HomePageElements.*;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.getLifecycle;
+import static ru.edujira.PageElements.BasePageElements.profileIcon;
+import static ru.edujira.PageElements.HomePageElements.*;
 
 public class HomePage {
 
